@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://daom0jrc60ced"]
+
+[ext_resource type="Texture2D" uid="uid://biso2mmrg2o0y" path="res://graphics/object/neon_lamp.png" id="1_la75j"]
+[ext_resource type="Texture2D" uid="uid://dvccx1nwccyor" path="res://graphics/lights/circle.png" id="2_emenm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tsxyo"]
+radius = 3.0
+height = 32.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ih2tb"]
+polygon = PackedVector2Array(-13, 0, -14, 3, -16, 1, -16, -1, -15, -2, -14, -3, 14, -3, 16, -1, 16, 1, 14, 3, 13, 0)
+
+[node name="NeonLight" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_tsxyo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_la75j")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.996078, 0.686275, 1)
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 10.0
+texture = ExtResource("2_emenm")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_ih2tb")

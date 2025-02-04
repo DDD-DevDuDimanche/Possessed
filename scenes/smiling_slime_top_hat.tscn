@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://cw5gprvcohb08"]
+
+[ext_resource type="Script" path="res://scenes/smiling_slime_top_hat.gd" id="1_1b2fk"]
+[ext_resource type="Texture2D" uid="uid://qqg8cn6oeejm" path="res://graphics/animation/animation_smiling_slime_top_hat.png" id="1_1717h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xl1g"]
+size = Vector2(240, 168)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_frn80"]
+polygon = PackedVector2Array(-16, -80, -16, -48, -24, -48, -24, -40, -48, -40, -48, -32, -72, -32, -72, -24, -80, -24, -80, -16, -88, -16, -88, -8, -96, -8, -96, 0, -104, 0, -104, 16, -112, 16, -112, 32, -120, 32, -120, 80, -112, 80, -112, 88, -104, 88, -104, 104, -96, 104, -96, 112, -88, 112, -88, 120, -80, 120, -80, 127, 80, 127, 80, 120, 88, 120, 88, 112, 96, 112, 96, 104, 104, 104, 104, 88, 112, 88, 112, 80, 120, 80, 120, 32, 112, 32, 112, 16, 104, 16, 104, 0, 96, 0, 96, -8, 88, -8, 88, -16, 80, -16, 80, -24, 56, -24, 56, -32, 48, -32, 48, -40, 33, -40, 33, -48, 24, -48, 24, -80)
+
+[sub_resource type="Animation" id="Animation_itfi2"]
+resource_name = "animation_smiling_slime_top_hat"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_0odiy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7c1q3"]
+_data = {
+"RESET": SubResource("Animation_0odiy"),
+"animation_smiling_slime_top_hat": SubResource("Animation_itfi2")
+}
+
+[node name="smiling_slime_top_hat" type="CharacterBody2D"]
+script = ExtResource("1_1b2fk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 44)
+shape = SubResource("RectangleShape2D_3xl1g")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_frn80")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1717h")
+hframes = 2
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7c1q3")
+}
+autoplay = "animation_smiling_slime_top_hat"

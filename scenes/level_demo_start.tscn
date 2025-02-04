@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwn1i0jsi4gdi"]
+
+[ext_resource type="PackedScene" uid="uid://dbujteyh8g8s3" path="res://scenes/level.tscn" id="1_eyxlv"]
+[ext_resource type="Texture2D" uid="uid://d2sju3cwk65m7" path="res://graphics/ground/wood_floor.png" id="2_eudi0"]
+[ext_resource type="Script" path="res://scenes/level_demo_start.gd" id="2_scnlj"]
+[ext_resource type="TileSet" uid="uid://4vxsdjb5k1o3" path="res://scenes/level_tileset.tres" id="3_xy2fw"]
+[ext_resource type="PackedScene" uid="uid://bkysfrhcqmlhn" path="res://scenes/door.tscn" id="4_kk1ew"]
+[ext_resource type="PackedScene" uid="uid://daom0jrc60ced" path="res://scenes/neon_light.tscn" id="5_xoeh8"]
+
+[node name="Level" instance=ExtResource("1_eyxlv")]
+script = ExtResource("2_scnlj")
+
+[node name="WoodenFloor" type="Sprite2D" parent="Ground" index="0"]
+texture_repeat = 2
+position = Vector2(570, 342)
+texture = ExtResource("2_eudi0")
+region_enabled = true
+region_rect = Rect2(0, 0, 485, 290)
+
+[node name="Player" parent="." index="1"]
+position = Vector2(569, 330)
+
+[node name="TileMap" type="TileMap" parent="." index="3"]
+tile_set = ExtResource("3_xy2fw")
+format = 2
+layer_0/tile_data = PackedInt32Array(786466, 393216, 0, 786465, 393216, 0, 786464, 393216, 0, 786463, 393216, 0, 786462, 393216, 0, 786461, 393216, 0, 786460, 393216, 0, 786459, 393216, 0, 786458, 393216, 0, 786457, 393216, 0, 786456, 393216, 0, 786455, 393216, 0, 786454, 393216, 0, 786453, 393216, 0, 786452, 0, 0, 851988, 0, 5, 917524, 0, 5, 983060, 0, 5, 1048596, 0, 5, 1114132, 0, 5, 1179668, 0, 5, 1245204, 0, 5, 1310740, 0, 5, 1376276, 0, 5, 1441812, 0, 5, 1507348, 0, 5, 1572884, 0, 5, 1638420, 0, 5, 1703956, 0, 5, 1769492, 0, 5, 1835028, 0, 5, 1900564, 0, 5, 1966100, 0, 3, 1966101, 327680, 3, 1966102, 327680, 3, 1966103, 327680, 3, 1966104, 327680, 3, 1966105, 327680, 3, 1966106, 327680, 3, 1966107, 327680, 3, 1966108, 327680, 3, 1966109, 327680, 3, 1966110, 327680, 3, 1966111, 327680, 3, 1966112, 327680, 3, 1966113, 327680, 3, 1966114, 327680, 3, 1966115, 327680, 3, 1966116, 327680, 3, 1966117, 327680, 3, 1966118, 327680, 3, 1966119, 327680, 3, 1966120, 327680, 3, 1966121, 327680, 3, 1966122, 327680, 3, 1966123, 327680, 3, 1966124, 327680, 3, 1966125, 327680, 3, 1966126, 327680, 3, 1966127, 327680, 3, 1966128, 327680, 3, 1966129, 327680, 3, 1966130, 196608, 3, 1900594, 196608, 5, 1835058, 196608, 5, 1769522, 196608, 5, 1703986, 196608, 5, 1638450, 196608, 5, 1572914, 196608, 5, 1507378, 196608, 5, 1441842, 196608, 5, 1376306, 196608, 5, 1310770, 196608, 5, 1245234, 196608, 5, 1179698, 196608, 5, 1114162, 196608, 5, 1048626, 196608, 5, 983090, 196608, 5, 917554, 196608, 5, 852018, 196608, 5, 786482, 196608, 0, 786481, 327680, 0, 786480, 327680, 0, 786479, 327680, 0, 786478, 327680, 0, 786477, 327680, 0, 786476, 327680, 0, 786475, 327680, 0, 786474, 327680, 0, 786473, 327680, 0, 786472, 327680, 0, 786471, 327680, 0, 786470, 327680, 0, 786469, 327680, 0)
+
+[node name="door" parent="." index="4" instance=ExtResource("4_kk1ew")]
+position = Vector2(576, 156)
+scale = Vector2(3, 3)
+
+[node name="NeonLight" parent="." index="5" instance=ExtResource("5_xoeh8")]
+position = Vector2(450, 203)
+
+[node name="NeonLight2" parent="." index="6" instance=ExtResource("5_xoeh8")]
+position = Vector2(688, 203)
+
+[node name="NeonLight3" parent="." index="7" instance=ExtResource("5_xoeh8")]
+position = Vector2(330, 346)
+rotation = -1.5708
+
+[node name="NeonLight4" parent="." index="8" instance=ExtResource("5_xoeh8")]
+position = Vector2(806, 353)
+rotation = 1.5708
+
+[node name="NeonLight5" parent="." index="9" instance=ExtResource("5_xoeh8")]
+position = Vector2(570, 482)
+rotation = 3.14159
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." index="10"]
+energy = 0.4
+blend_mode = 1
+
+[connection signal="player_entered_door" from="door" to="." method="_on_door_player_entered_door"]
